@@ -114,15 +114,8 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          {/* ── Mobile: Book button + Hamburger ── */}
-          {/* Use items-center and fixed heights so nothing shifts */}
-          <div className="md:hidden flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={() => setShowContactPopup(true)}
-              className="text-[10px] font-bold text-black bg-[#C9A84C] px-2.5 py-1.5 rounded-full tracking-wide whitespace-nowrap leading-none"
-            >
-              Book
-            </button>
+          {/* ── Mobile: Hamburger only ── */}
+          <div className="md:hidden flex items-center flex-shrink-0">
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-xl border border-white/10 bg-white/5 flex-shrink-0"
