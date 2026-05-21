@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Stage / Platform Setups",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778669352/stage_system_cd1hym.png",
+    "description": "Modular stage setup for concerts, weddings, and events.",
+    "specifications": "Height Adjustable | Heavy Load Capacity | Anti-slip Surface"
+  },
+  {
+    "name": "Sound System",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778671041/box_iqt6mj.png",
+    "description": "High-power professional sound system for concerts and large events.",
+    "specifications": "Brand: JBL / L-Acoustic / RCF / D&B / Adamson"
+  },
+  {
+    "name": "LED Walls",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778670505/led_hwjjor.jpg",
+    "description": "High-resolution LED screens for visuals, branding, and live feed.",
+    "specifications": "P3/P4 Outdoor | Modular Panels | HD Support"
+  },
+  {
+    "name": "Professional / Intelligent Lights",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778669997/head_light-1_dxxdft.png",
+    "description": "Dynamic lighting system for stage effects and concerts.",
+    "specifications": "Beam + Wash + Spot | DMX Controlled | RGB Effects"
+  },
+  {
+    "name": "SFX / Special Effects & Fireworks",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778669667/vfx_pf7liv.png",
+    "description": "Special effects system for high-energy events and festivals.",
+    "specifications": "RGB Laser | Fog Integration | DMX Sync"
+  },
+  {
+    "name": "Trussing Structure",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778669187/trussing_1_frzw5p.png",
+    "description": "Aluminium structural framework for lighting and stage support.",
+    "specifications": "Heavy Duty Aluminium | Custom Build | Outdoor Safe"
+  },
+  {
+    "name": "Sound Console",
+    "image": "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778670882/sound_dwaohd.png",
+    "description": "Advanced audio mixing console for live sound control.",
+    "specifications": "Digital FX | Multi-output routing"
+  }
+]
