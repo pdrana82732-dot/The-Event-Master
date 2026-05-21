@@ -214,12 +214,6 @@ export default function Gallery() {
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
-            <Link
-              to="/services"
-              className="inline-flex items-center justify-center border border-[#C9A84C]/30 text-white px-8 py-4 rounded-full font-semibold text-sm hover:bg-[#C9A84C]/10 transition-all duration-300"
-            >
-              Explore Services
-            </Link>
           </motion.div>
 
         </div>
