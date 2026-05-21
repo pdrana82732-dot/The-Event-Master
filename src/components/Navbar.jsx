@@ -40,22 +40,24 @@ export default function Navbar() {
 
         <div className="max-w-7xl mx-auto flex justify-between items-center px-3 md:px-6 py-2.5">
 
-          {/* ── Logo + Name — floats outside navbar on desktop, compact on mobile ── */}
+          {/* ── Logo + Name ── */}
           <Link
             to="/"
             className="flex items-center gap-2 md:gap-3 flex-shrink-0 relative z-20 group"
-            style={{ marginTop: "-20px", marginBottom: "-20px" }}
+            // Only float the logo outside on desktop; on mobile keep it in-flow
+            style={{ marginTop: "0", marginBottom: "0" }}
           >
-            {/* Logo image — smaller on mobile, big on desktop */}
+            {/* Logo — compact on mobile, large on desktop */}
             <motion.img
               src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1778664482/Events_Logo_qqulft.png"
               alt="The Events Master Logo"
-              className="h-14 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl"
+              // h-10 on mobile keeps the navbar at a fixed, predictable height
+              className="h-10 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl md:-my-5 lg:-my-7"
               whileHover={{ scale: 1.06 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             />
 
-            {/* Company name — always visible, scaled per breakpoint */}
+            {/* Company name */}
             <div className="flex flex-col leading-tight">
               <span
                 className="text-sm md:text-xl lg:text-2xl font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 whitespace-nowrap tracking-tight"
@@ -113,21 +115,31 @@ export default function Navbar() {
           </div>
 
           {/* ── Mobile: Book button + Hamburger ── */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Use items-center and fixed heights so nothing shifts */}
+          <div className="md:hidden flex items-center gap-2 flex-shrink-0">
             <button
               onClick={() => setShowContactPopup(true)}
-              className="text-[11px] font-bold text-black bg-[#C9A84C] px-3.5 py-2 rounded-full tracking-wide"
+              className="text-[11px] font-bold text-black bg-[#C9A84C] px-3.5 py-2 rounded-full tracking-wide whitespace-nowrap leading-none"
             >
               Book →
             </button>
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-xl border border-white/10 bg-white/5"
+              className="flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-xl border border-white/10 bg-white/5 flex-shrink-0"
               aria-label="Toggle menu"
             >
-              <motion.span animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="w-5 h-px bg-white block origin-center" />
-              <motion.span animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }} className="w-5 h-px bg-white block" />
-              <motion.span animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }} className="w-5 h-px bg-white block origin-center" />
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                className="w-5 h-px bg-white block origin-center"
+              />
+              <motion.span
+                animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                className="w-5 h-px bg-white block"
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                className="w-5 h-px bg-white block origin-center"
+              />
             </button>
           </div>
 
@@ -157,7 +169,9 @@ export default function Navbar() {
                   >
                     <Link
                       to={item.path}
-                      className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-colors duration-200 ${active ? "text-[#C9A84C] bg-[#C9A84C]/10" : "text-gray-300 hover:text-white hover:bg-white/5"
+                      className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-colors duration-200 ${active
+                          ? "text-[#C9A84C] bg-[#C9A84C]/10"
+                          : "text-gray-300 hover:text-white hover:bg-white/5"
                         }`}
                     >
                       {item.name}
@@ -168,7 +182,10 @@ export default function Navbar() {
               })}
               <div className="px-4 pt-3 pb-2 border-t border-white/5 mt-2">
                 <button
-                  onClick={() => { setMenuOpen(false); setShowContactPopup(true); }}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setShowContactPopup(true);
+                  }}
                   className="block w-full text-center bg-[#C9A84C] text-black px-5 py-3.5 rounded-full text-sm font-bold tracking-wide"
                 >
                   Book Event →
@@ -200,21 +217,39 @@ export default function Navbar() {
               <button
                 onClick={() => setShowContactPopup(false)}
                 className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl z-20 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-              >×</button>
+              >
+                ×
+              </button>
 
               <div className="relative z-10 text-center">
-                <span className="text-[#C9A84C] uppercase tracking-[0.3em] text-[10px] font-semibold">Book Your Event</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mt-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <span className="text-[#C9A84C] uppercase tracking-[0.3em] text-[10px] font-semibold">
+                  Book Your Event
+                </span>
+                <h2
+                  className="text-2xl md:text-3xl font-bold text-white mt-4 leading-tight"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Let's Create Something Amazing
                 </h2>
                 <p className="text-gray-400 mt-4 leading-relaxed text-sm">
-                  Connect with our team for concerts, weddings, corporate events, artist bookings, and premium event solutions.
+                  Connect with our team for concerts, weddings, corporate events, artist bookings,
+                  and premium event solutions.
                 </p>
 
                 <div className="mt-8 space-y-3">
                   {[
-                    { icon: "☎", label: "Call Us", text: "+91 99076 55554", href: "tel:+919907655554" },
-                    { icon: "✉", label: "Email Us", text: "gagandeep.singh@rthevents.co.in", href: "mailto:gagandeep.singh@rthevents.co.in" },
+                    {
+                      icon: "☎",
+                      label: "Call Us",
+                      text: "+91 99076 55554",
+                      href: "tel:+919907655554",
+                    },
+                    {
+                      icon: "✉",
+                      label: "Email Us",
+                      text: "gagandeep.singh@rthevents.co.in",
+                      href: "mailto:gagandeep.singh@rthevents.co.in",
+                    },
                   ].map(({ icon, label, text, href }) => (
                     <motion.a
                       key={label}
@@ -222,7 +257,9 @@ export default function Navbar() {
                       href={href}
                       className="flex items-center gap-4 p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-[#C9A84C]/30 transition-all duration-300"
                     >
-                      <div className="w-12 h-12 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] text-xl flex-shrink-0">{icon}</div>
+                      <div className="w-12 h-12 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] text-xl flex-shrink-0">
+                        {icon}
+                      </div>
                       <div className="text-left overflow-hidden">
                         <p className="text-[10px] text-gray-500 uppercase tracking-widest">{label}</p>
                         <p className="text-white font-medium text-sm break-all">{text}</p>
@@ -233,7 +270,10 @@ export default function Navbar() {
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <button
-                    onClick={() => { setShowContactPopup(false); window.location.href = "/contact"; }}
+                    onClick={() => {
+                      setShowContactPopup(false);
+                      window.location.href = "/contact";
+                    }}
                     className="flex-1 bg-[#C9A84C] text-black py-3 rounded-full font-bold text-sm hover:shadow-[0_0_20px_rgba(201,168,76,0.4)] transition-all duration-300"
                   >
                     Contact Details
