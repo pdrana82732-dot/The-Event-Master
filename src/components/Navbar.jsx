@@ -119,9 +119,9 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-2 flex-shrink-0">
             <button
               onClick={() => setShowContactPopup(true)}
-              className="text-[11px] font-bold text-black bg-[#C9A84C] px-3.5 py-2 rounded-full tracking-wide whitespace-nowrap leading-none"
+              className="text-[10px] font-bold text-black bg-[#C9A84C] px-2.5 py-1.5 rounded-full tracking-wide whitespace-nowrap leading-none"
             >
-              Book →
+              Book
             </button>
             <button
               onClick={() => setMenuOpen((v) => !v)}
