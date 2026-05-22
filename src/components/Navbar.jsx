@@ -30,7 +30,7 @@ export default function Navbar() {
         initial={{ y: -90, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`sticky top-3 z-50 mx-3 md:mx-6 rounded-2xl border transition-all duration-500 overflow-visible ${
+        className={`sticky top-3 z-50 mx-3 md:mx-6 rounded-2xl border transition-all duration-500 ${
           scrolled
             ? "bg-black/92 border-[#C9A84C]/35 shadow-[0_8px_40px_rgba(0,0,0,0.7)]"
             : "bg-black/65 border-white/10 shadow-xl"
@@ -39,43 +39,42 @@ export default function Navbar() {
         {/* Gold top sweep line */}
         <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/60 to-transparent rounded-full" />
 
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-3 md:px-6 py-2.5">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-2.5 relative">
 
           {/* ── Logo + Name ── */}
           <Link
             to="/"
-            className="flex items-center gap-2 md:gap-3 flex-shrink-0 relative z-20 group"
-            // Only float the logo outside on desktop; on mobile keep it in-flow
-            style={{ marginTop: "0", marginBottom: "0" }}
+            className="flex items-center gap-2 md:gap-3 z-20 group min-w-0"
           >
-            {/* Logo — compact on mobile, large on desktop */}
-            <motion.img
-              src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1778664482/Events_Logo_qqulft.png"
-              alt="The Events Master Logo"
-              // h-10 on mobile keeps the navbar at a fixed, predictable height
-              className="h-10 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl md:-my-5 lg:-my-7"
-              whileHover={{ scale: 1.06 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            />
+            {/* Wrapper div to safely handle the oversized desktop logo without breaking navbar bounds */}
+            <div className="relative flex items-center justify-center h-10 w-10 md:h-14 md:w-16 lg:h-16 lg:w-20 flex-shrink-0">
+              <motion.img
+                src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1778664482/Events_Logo_qqulft.png"
+                alt="The Events Master Logo"
+                className="h-10 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl absolute max-w-none origin-center"
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              />
+            </div>
 
             {/* Company name */}
-            <div className="flex flex-col leading-tight">
+            <div className="flex flex-col leading-tight min-w-0">
               <span
-                className="text-sm md:text-xl lg:text-2xl font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 whitespace-nowrap tracking-tight"
+                className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 truncate tracking-tight"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 The{" "}
                 <span className="text-[#C9A84C] italic">Events</span>{" "}
                 Master
               </span>
-              <span className="hidden md:block text-[10px] text-[#C9A84C]/60 tracking-[0.28em] uppercase font-medium mt-0.5">
+              <span className="hidden md:block text-[10px] text-[#C9A84C]/60 tracking-[0.28em] uppercase font-medium mt-0.5 truncate">
                 Your Event · Our Expertise
               </span>
             </div>
           </Link>
 
           {/* ── Desktop Links ── */}
-          <div className="hidden md:flex items-center gap-0.5 text-sm font-medium">
+          <div className="hidden md:flex items-center gap-0.5 text-sm font-medium flex-shrink-0">
             {NAV_LINKS.map((item) => {
               const active = location.pathname === item.path;
               return (
@@ -117,23 +116,23 @@ export default function Navbar() {
           </div>
 
           {/* ── Mobile: Hamburger only ── */}
-          <div className="md:hidden flex items-center flex-shrink-0">
+          <div className="md:hidden flex items-center flex-shrink-0 z-20">
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-xl border border-white/10 bg-white/5 flex-shrink-0"
               aria-label="Toggle menu"
             >
               <motion.span
-                animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                className="w-5 h-px bg-white block origin-center"
+                animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                className="w-4 h-px bg-white block origin-center"
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-                className="w-5 h-px bg-white block"
+                className="w-4 h-px bg-white block"
               />
               <motion.span
-                animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                className="w-5 h-px bg-white block origin-center"
+                animate={menuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                className="w-4 h-px bg-white block origin-center"
               />
             </button>
           </div>
@@ -149,10 +148,10 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -14, scale: 0.97 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed top-[76px] left-3 right-3 z-40 rounded-2xl bg-black/96 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl overflow-hidden md:hidden"
+            className="fixed top-[76px] left-3 right-3 z-40 rounded-2xl bg-black/95 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl overflow-hidden md:hidden max-h-[calc(100vh-100px)] overflow-y-auto"
           >
             <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
-            <div className="flex flex-col py-4 px-2">
+            <div className="flex flex-col py-3 px-2">
               {NAV_LINKS.map((item, i) => {
                 const active = location.pathname === item.path;
                 return (
@@ -164,7 +163,7 @@ export default function Navbar() {
                   >
                     <Link
                       to={item.path}
-                      className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-colors duration-200 ${
+                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${
                         active
                           ? "text-[#C9A84C] bg-[#C9A84C]/10"
                           : "text-gray-300 hover:text-white hover:bg-white/5"
@@ -182,7 +181,7 @@ export default function Navbar() {
                     setMenuOpen(false);
                     setShowContactPopup(true);
                   }}
-                  className="block w-full text-center bg-[#C9A84C] text-black px-5 py-3.5 rounded-full text-sm font-bold tracking-wide"
+                  className="block w-full text-center bg-[#C9A84C] text-black px-5 py-3 rounded-full text-sm font-bold tracking-wide"
                 >
                   Book Event →
                 </button>
@@ -199,17 +198,17 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-sm flex items-center justify-center px-4"
+            className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-sm flex items-center justify-center px-4 overflow-y-auto py-6"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
               transition={{ duration: 0.35 }}
-              className="relative w-full max-w-md rounded-3xl overflow-hidden border border-[#C9A84C]/25 bg-[#0e0c08] p-6 md:p-8 shadow-2xl"
+              className="relative w-full max-w-md rounded-3xl border border-[#C9A84C]/25 bg-[#0e0c08] p-6 shadow-2xl my-auto"
             >
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
-              <div className="absolute -top-20 -right-20 w-52 h-52 bg-[#C9A84C]/10 blur-3xl rounded-full" />
+              <div className="absolute -top-20 -right-20 w-52 h-52 bg-[#C9A84C]/10 blur-3xl rounded-full pointer-events-none" />
               <button
                 onClick={() => setShowContactPopup(false)}
                 className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl z-20 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
@@ -222,17 +221,17 @@ export default function Navbar() {
                   Book Your Event
                 </span>
                 <h2
-                  className="text-2xl md:text-3xl font-bold text-white mt-4 leading-tight"
+                  className="text-xl md:text-3xl font-bold text-white mt-3 leading-tight"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   Let's Create Something Amazing
                 </h2>
-                <p className="text-gray-400 mt-4 leading-relaxed text-sm">
+                <p className="text-gray-400 mt-3 leading-relaxed text-xs md:text-sm">
                   Connect with our team for concerts, weddings, corporate events, artist bookings,
                   and premium event solutions.
                 </p>
 
-                <div className="mt-8 space-y-3">
+                <div className="mt-6 space-y-3">
                   {[
                     {
                       icon: "☎",
@@ -251,14 +250,14 @@ export default function Navbar() {
                       key={label}
                       whileHover={{ scale: 1.02 }}
                       href={href}
-                      className="flex items-center gap-4 p-4 rounded-2xl bg-black/40 border border-white/5 hover:border-[#C9A84C]/30 transition-all duration-300"
+                      className="flex items-center gap-4 p-3.5 rounded-2xl bg-black/40 border border-white/5 hover:border-[#C9A84C]/30 transition-all duration-300"
                     >
-                      <div className="w-12 h-12 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] text-xl flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/20 flex items-center justify-center text-[#C9A84C] text-lg flex-shrink-0">
                         {icon}
                       </div>
                       <div className="text-left overflow-hidden">
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest">{label}</p>
-                        <p className="text-white font-medium text-sm break-all">{text}</p>
+                        <p className="text-[9px] text-gray-500 uppercase tracking-widest">{label}</p>
+                        <p className="text-white font-medium text-xs md:text-sm truncate">{text}</p>
                       </div>
                     </motion.a>
                   ))}
@@ -270,7 +269,7 @@ export default function Navbar() {
                       setShowContactPopup(false);
                       window.location.href = "/contact";
                     }}
-                    className="flex-1 bg-[#C9A84C] text-black py-3 rounded-full font-bold text-sm hover:shadow-[0_0_20px_rgba(201,168,76,0.4)] transition-all duration-300"
+                    className="flex-1 bg-[#C9A84C] text-black py-2.5 rounded-full font-bold text-sm hover:shadow-[0_0_20px_rgba(201,168,76,0.4)] transition-all duration-300"
                   >
                     Contact Details
                   </button>
@@ -278,7 +277,7 @@ export default function Navbar() {
                     href="https://wa.me/919907655554"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 border border-[#C9A84C]/30 text-white py-3 rounded-full font-bold text-sm hover:bg-[#C9A84C]/10 transition-all duration-300 text-center"
+                    className="flex-1 border border-[#C9A84C]/30 text-white py-2.5 rounded-full font-bold text-sm hover:bg-[#C9A84C]/10 transition-all duration-300 text-center"
                   >
                     WhatsApp →
                   </a>

@@ -590,46 +590,148 @@ export default function Home() {
       ══════════════════════════════════════════════════════════ */}
 
       {/* ── 2. ABOUT ROW 1 — Text + Image ── */}
-      <section id="about" className="max-w-7xl mx-auto px-4 md:px-8 py-28">
+      <section id="about" className="max-w-7xl mx-auto px-4 md:px-8 py-28 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <FadeIn x={-50}>
-            <span className="text-[#C9A84C] text-[11px] tracking-[0.28em] uppercase font-semibold">Our Story</span>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+
+          {/* Left Content */}
+          <FadeIn x={-70} delay={0.15}>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
             >
-              We Build Unforgettable Experiences
-            </h2>
-            <div className="h-px w-14 bg-[#C9A84C] mb-7" />
-            <p className="text-gray-300 leading-[1.9] text-base">
-              Founded with a passion for creating unforgettable experiences, Events Master is a
-              luxury-driven event production and artist management company specializing in live
-              concerts, corporate events, luxury weddings, cultural festivals, and large-scale
-              entertainment experiences.
-            </p>
-            <p className="text-gray-400 mt-5 leading-[1.9] text-base">
-              With over 15 years of professional journey in the event industry, we bring together
-              creativity, precision, and world-class execution under one roof.
-            </p>
+              <h2
+                className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Elevating Events Into Extraordinary Experiences
+              </h2>
+
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: 56 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-px bg-[#C9A84C] mb-7"
+              />
+
+              <motion.p
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.35 }}
+                className="text-gray-300 leading-[1.9] text-base"
+              >
+                Founded with a passion for creating unforgettable experiences,
+                Events Master is a luxury-driven event production and artist
+                management company specializing in live concerts, corporate
+                events, luxury weddings, cultural festivals, and large-scale
+                entertainment experiences.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-gray-400 mt-5 leading-[1.9] text-base"
+              >
+                With over 15 years of professional journey in the event
+                industry, we bring together creativity, precision, and
+                world-class execution under one roof.
+              </motion.p>
+
+              {/* Premium Royal Golden Tags */}
+              <div className="flex flex-wrap gap-3 mt-10">
+                {[
+                  "Stage Setup",
+                  "Sound Systems",
+                  "LED Walls",
+                  "Trussing",
+                  "Lighting",
+                  "Generators",
+                  "Artist Management",
+                ].map((s, i) => (
+                  <motion.span
+                    key={s}
+                    initial={{ opacity: 0, scale: 0.82, y: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.45,
+                      delay: 0.7 + i * 0.08,
+                    }}
+                    whileHover={{
+                      scale: 1.06,
+                      y: -2,
+                    }}
+                    className="
+                text-[11px]
+                text-[#D4AF37]
+                border border-[#D4AF37]/30
+                rounded-full
+                px-3.5 py-1.5
+                backdrop-blur-sm
+                bg-[#D4AF37]/10
+                hover:bg-[#D4AF37]/20
+                hover:border-[#D4AF37]/60
+                hover:text-[#F5D97A]
+                transition-all duration-300
+                shadow-[0_0_12px_rgba(212,175,55,0.15)]
+              "
+                  >
+                    {s}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           </FadeIn>
 
-          <FadeIn x={50} delay={0.1}>
-            <div className="relative">
+          {/* Right Image */}
+          <FadeIn x={70} delay={0.2}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="relative"
+            >
+
               <div className="absolute -inset-3 border border-[#C9A84C]/15 rounded-3xl" />
-              <div className="absolute -inset-6 border border-[#C9A84C]/07 rounded-3xl" />
+              <div className="absolute -inset-6 border border-[#C9A84C]/10 rounded-3xl" />
+
               <motion.img
                 src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779439558/concert_h7fgla.avif"
                 alt="Event production"
                 className="rounded-2xl w-full h-[400px] md:h-[460px] object-cover relative z-10"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.45 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.5 }}
               />
-              <div className="absolute bottom-5 right-5 z-20 bg-black/80 backdrop-blur-md border border-[#C9A84C]/30 rounded-xl px-5 py-3.5">
-                <p className="text-[#C9A84C] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>15+ Years</p>
-                <p className="text-gray-300 text-xs mt-0.5 tracking-wide">of excellence</p>
-              </div>
-            </div>
+
+              {/* Experience Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.8 }}
+                className="absolute bottom-5 right-5 z-20 bg-black/80 backdrop-blur-md border border-[#C9A84C]/30 rounded-xl px-5 py-3.5"
+              >
+                <p
+                  className="text-[#C9A84C] font-bold text-lg"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  15+ Years
+                </p>
+
+                <p className="text-gray-300 text-xs mt-0.5 tracking-wide">
+                  of excellence
+                </p>
+              </motion.div>
+
+            </motion.div>
           </FadeIn>
+
         </div>
       </section>
 

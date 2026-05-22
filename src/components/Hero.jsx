@@ -1,15 +1,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const SERVICES = [
-  "Stage Setup",
-  "Sound Systems",
-  "LED Walls",
-  "Trussing",
-  "Lighting",
-  "Generators",
-  "Artist Management",
-];
+// const SERVICES = [
+//   "Stage Setup",
+//   "Sound Systems",
+//   "LED Walls",
+//   "Trussing",
+//   "Lighting",
+//   "Generators",
+//   "Artist Management",
+// ];
 
 export default function Hero({ onBookClick }) {
   const ref = useRef(null);
@@ -98,8 +98,7 @@ export default function Hero({ onBookClick }) {
           transition={{ duration: 0.7, delay: 0.65 }}
           className="text-gray-300 text-sm md:text-base max-w-lg mx-auto mb-9 leading-relaxed"
         >
-          End-to-end event production — Stage, Sound, Lighting, LED walls, Tentage &amp; across Punjab &amp; India.
-        </motion.p>
+          Delivering immersive event experiences with premium staging, cinematic lighting, powerful sound, LED visuals, and seamless event execution across India.        </motion.p>
 
         {/* Service Pills */}
         <motion.div
@@ -108,7 +107,7 @@ export default function Hero({ onBookClick }) {
           transition={{ duration: 0.6, delay: 0.85 }}
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
-          {SERVICES.map((s, i) => (
+          {/* {SERVICES.map((s, i) => (
             <motion.span
               key={s}
               initial={{ opacity: 0, scale: 0.82 }}
@@ -118,7 +117,7 @@ export default function Hero({ onBookClick }) {
             >
               {s}
             </motion.span>
-          ))}
+          ))} */}
         </motion.div>
 
         {/* CTA Buttons */}
