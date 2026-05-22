@@ -691,7 +691,7 @@ export default function Home() {
             <div className="relative">
               <div className="absolute -inset-3 border border-[#C9A84C]/15 rounded-3xl" />
               <motion.img
-                src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=900"
+                src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779428513/production_gx2jar.png"
                 alt="Stage setup"
                 className="rounded-2xl w-full h-[400px] md:h-[460px] object-cover relative z-10"
                 whileHover={{ scale: 1.02 }}
@@ -713,16 +713,6 @@ export default function Home() {
               Complete Event Production Solutions
             </h2>
             <div className="h-px w-14 bg-[#C9A84C] mb-7" />
-            <p className="text-gray-300 leading-[1.9]">
-              Founded with a passion for creating unforgettable experiences, Events Master is a
-              luxury-driven event production and artist management company specializing in live
-              concerts, corporate events, luxury weddings, cultural festivals, and large-scale
-              entertainment experiences.
-            </p>
-            <p className="text-gray-400 mt-5 leading-[1.9]">
-              With over 15 years of professional journey in the event industry, we bring together
-              creativity, precision, and world-class execution under one roof.
-            </p>
             <ul className="mt-9 space-y-3.5">
               {[
                 "Stage & Trussing Systems",

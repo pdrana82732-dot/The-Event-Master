@@ -28,7 +28,7 @@ export default function Hero({ onBookClick }) {
       {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=90&w=1600"
+          src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779439558/concert_h7fgla.avif"
           alt=""
           className="w-full h-full object-cover scale-110"
         />

@@ -3,7 +3,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useNavigate } from "react-router-dom";
 
 const artists = [
-    { name: "Ranjit Bawa", category: "Live Concert Artist", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779359315/ranjit_bawa_yfhur7.jpg" },
+    { name: "Gippy Grewal", category: "Punjabi Star", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779427536/gippy_dcynxo.jpg" },
+    { name: "Ammy Virk", category: "Punjabi Star", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358888/ammy_virk_nlpugw.jpg" },
     { name: "Satinder Sartaj", category: "Soulful Vocalist", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358887/satinder_sartaj_kwwnkp.jpg" },
     { name: "Hardy Sandhu", category: "Celebrity Performer", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358887/hardy_sandhu_u6ub3r.jpg" },
     { name: "Amit Trivedi", category: "Music Director", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358887/amit_trivedi_rtcqb5.jpg" },
@@ -12,7 +13,8 @@ const artists = [
     { name: "Kulwinder Billa", category: "Folk Artist", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358887/kulwinder_billla_dzse1w.jpg" },
     { name: "Sunanda Sharma", category: "Live Sensation", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358887/sunanda_sharma_topb2x.jpg" },
     { name: "DJs & Band", category: "Event Entertainment", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779359474/djs_e3z0oh.jpg" },
-    { name: "Ammy Virk", category: "Punjabi Star", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779358888/ammy_virk_nlpugw.jpg" },
+    { name: "Ranjit Bawa", category: "Live Concert Artist", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779359315/ranjit_bawa_yfhur7.jpg" },
+    { name: "Sunidhi Chauhan", category: "Bollywood Playback Queen", image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779428201/sunidhi_chauhan_gftry0.jpg" },
 ];
 
 const stats = [
@@ -29,9 +31,9 @@ const features = [
     { title: "24/7 Professional Support", desc: "Our dedicated team is available round the clock for every event need." },
 ];
 
-const marqueeItems = ["LIVE CONCERTS", "CELEBRITY BOOKINGS", "DJS & BANDS", "PRIVATE EVENTS", "WEDDINGS", "FESTIVALS", "CORPORATE EVENTS", "STAGE SHOWS"];
+const marqueeItems = ["LIVE CONCERTS", "CELEBRITY BOOKINGS", "DJS & BANDS", "PRIVATE EVENTS", "WEDDINGS", "FESTIVALS", "CORPORATE EVENTS", "STAGE SHOWS", "BOLLYWOOD PLAYBACK QUEEN"];
 
-const filterCategories = ["All", "Live Concert Artist", "Soulful Vocalist", "Celebrity Performer", "Music Director", "Stage Performer", "Pop Icon", "Folk Artist", "Live Sensation", "Event Entertainment", "Punjabi Star"];
+const filterCategories = ["All", "Live Concert Artist", "Soulful Vocalist", "Celebrity Performer", "Music Director", "Stage Performer", "Pop Icon", "Folk Artist", "Live Sensation", "Event Entertainment", "Punjabi Star", "Bollywood Playback Queen"];
 
 export default function ArtistBookingPage() {
     const navigate = useNavigate();
@@ -192,8 +194,8 @@ export default function ArtistBookingPage() {
                                 key={cat}
                                 onClick={() => setActiveFilter(cat)}
                                 className={`whitespace-nowrap px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-250 border ${activeFilter === cat
-                                        ? "bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-700/30"
-                                        : "bg-transparent border-zinc-700 text-gray-400 hover:border-purple-500/60 hover:text-gray-200"
+                                    ? "bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-700/30"
+                                    : "bg-transparent border-zinc-700 text-gray-400 hover:border-purple-500/60 hover:text-gray-200"
                                     }`}
                             >
                                 {cat}
