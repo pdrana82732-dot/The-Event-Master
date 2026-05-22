@@ -633,7 +633,7 @@ export default function Home() {
               <div className="absolute -inset-3 border border-[#C9A84C]/15 rounded-3xl" />
               <div className="absolute -inset-6 border border-[#C9A84C]/07 rounded-3xl" />
               <motion.img
-                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900"
+                src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779439558/concert_h7fgla.avif"
                 alt="Event production"
                 className="rounded-2xl w-full h-[400px] md:h-[460px] object-cover relative z-10"
                 whileHover={{ scale: 1.02 }}

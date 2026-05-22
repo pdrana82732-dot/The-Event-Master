@@ -28,7 +28,7 @@ export default function Hero({ onBookClick }) {
       {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img
-          src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779439558/concert_h7fgla.avif"
+          src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779428756/experiencet_t0tvhh.avif"
           alt=""
           className="w-full h-full object-cover scale-110"
         />
@@ -98,7 +98,7 @@ export default function Hero({ onBookClick }) {
           transition={{ duration: 0.7, delay: 0.65 }}
           className="text-gray-300 text-sm md:text-base max-w-lg mx-auto mb-9 leading-relaxed"
         >
-          End-to-end event production — Stage, Sound, Lighting, LED walls, Tentage across Punjab &amp; India.
+          End-to-end event production — Stage, Sound, Lighting, LED walls, Tentage &amp; across Punjab &amp; India.
         </motion.p>
 
         {/* Service Pills */}
