@@ -49,7 +49,7 @@ const SERVICES = [
     title: "Event Verticals Specialize In",
     tag: "Full Scale Events",
     icon: "🎪",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900",
+    image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779443201/p1_r5webd.jpg",
     items: [
       "Concerts & Music Festivals",
       "Corporate Events",
@@ -74,7 +74,7 @@ const SERVICES = [
     title: "Artist Management",
     tag: "Talent & Booking",
     icon: "🎤",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900",
+    image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1778663970/samples/people/jazz.jpg",
     items: [
       "Celebrity & Management",
       "Bollywood Singers",
@@ -99,7 +99,7 @@ const SERVICES = [
     title: "Technical Production",
     tag: "Equipment & Setup",
     icon: "⚙️",
-    image: "https://images.unsplash.com/photo-1507878866276-a947ef722fee?w=900",
+    image: "https://res.cloudinary.com/dd0bw31fi/image/upload/v1779443388/p2_hts5w3.avif",
     items: [
       "Stage & Set Design",
       "Sound Systems",
@@ -611,21 +611,6 @@ export default function Home() {
               With over 15 years of professional journey in the event industry, we bring together
               creativity, precision, and world-class execution under one roof.
             </p>
-            <div className="flex flex-wrap gap-2.5 mt-9">
-              {["Stage Production", "Sound Engineering", "LED Walls", "Artist Management"].map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.08 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.06, borderColor: "rgba(201,168,76,0.6)" }}
-                  className="text-[11px] text-[#C9A84C] border border-[#C9A84C]/30 rounded-full px-4 py-1.5 bg-[#C9A84C]/5 tracking-wide cursor-default"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </div>
           </FadeIn>
 
           <FadeIn x={50} delay={0.1}>
