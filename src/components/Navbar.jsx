@@ -30,11 +30,10 @@ export default function Navbar() {
         initial={{ y: -90, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`sticky top-3 z-50 mx-3 md:mx-6 rounded-2xl border transition-all duration-500 ${
-          scrolled
+        className={`sticky top-3 z-50 mx-3 md:mx-6 rounded-2xl border transition-all duration-500 ${scrolled
             ? "bg-black/92 border-[#C9A84C]/35 shadow-[0_8px_40px_rgba(0,0,0,0.7)]"
             : "bg-black/65 border-white/10 shadow-xl"
-        } backdrop-blur-xl`}
+          } backdrop-blur-xl`}
       >
         {/* Gold top sweep line */}
         <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/60 to-transparent rounded-full" />
@@ -44,9 +43,8 @@ export default function Navbar() {
           {/* ── Logo + Name ── */}
           <Link
             to="/"
-            className="flex items-center gap-2 md:gap-3 z-20 group min-w-0"
+            className="flex items-center gap-3 md:gap-5 z-20 group min-w-0"
           >
-            {/* Wrapper div to safely handle the oversized desktop logo without breaking navbar bounds */}
             <div className="relative flex items-center justify-center h-10 w-10 md:h-14 md:w-16 lg:h-16 lg:w-20 flex-shrink-0">
               <motion.img
                 src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1778664482/Events_Logo_qqulft.png"
@@ -57,14 +55,14 @@ export default function Navbar() {
               />
             </div>
 
-            {/* Company name */}
+            {/* Company name — "Events" is gold but NOT italic, same weight as "Master" */}
             <div className="flex flex-col leading-tight min-w-0">
               <span
                 className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 truncate tracking-tight"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 The{" "}
-                <span className="text-[#C9A84C] italic">Events</span>{" "}
+                <span className="text-[#C9A84C]">Events</span>{" "}
                 Master
               </span>
               <span className="hidden md:block text-[10px] text-[#C9A84C]/60 tracking-[0.28em] uppercase font-medium mt-0.5 truncate">
@@ -80,9 +78,8 @@ export default function Navbar() {
               return (
                 <Link key={item.path} to={item.path} className="relative px-3.5 py-2.5 group">
                   <span
-                    className={`transition-colors duration-300 text-sm ${
-                      active ? "text-[#C9A84C]" : "text-gray-300 group-hover:text-white"
-                    }`}
+                    className={`transition-colors duration-300 text-sm ${active ? "text-[#C9A84C]" : "text-gray-300 group-hover:text-white"
+                      }`}
                   >
                     {item.name}
                   </span>
@@ -163,11 +160,10 @@ export default function Navbar() {
                   >
                     <Link
                       to={item.path}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${
-                        active
+                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${active
                           ? "text-[#C9A84C] bg-[#C9A84C]/10"
                           : "text-gray-300 hover:text-white hover:bg-white/5"
-                      }`}
+                        }`}
                     >
                       {item.name}
                       {active && <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />}

@@ -122,11 +122,16 @@ const SERVICES = [
   },
 ];
 
-const PROCESS = [
-  { step: "01", title: "Consultation", desc: "We understand your vision, goals, and budget.", icon: "💬" },
-  { step: "02", title: "Planning", desc: "Our team designs the perfect event blueprint.", icon: "📋" },
-  { step: "03", title: "Execution", desc: "Flawless on-ground delivery with full coordination.", icon: "⚡" },
-  { step: "04", title: "Wrap-up", desc: "Post-event breakdown and client debrief.", icon: "✅" },
+/* Industries from the requirement image */
+const INDUSTRIES = [
+  { icon: "🏢", label: "Corporate Companies", number: "01" },
+  { icon: "🏛️", label: "Government Organizations", number: "02" },
+  { icon: "🎓", label: "Educational Institutions", number: "03" },
+  { icon: "🏨", label: "Hospitality Brands", number: "04" },
+  { icon: "💍", label: "Luxury Wedding Clients", number: "05" },
+  { icon: "🎬", label: "Entertainment Industry", number: "06" },
+  { icon: "👗", label: "Lifestyle & Fashion Brands", number: "07" },
+  { icon: "🏭", label: "Industrial & Manufacturing Companies", number: "08" },
 ];
 
 /* ═══════════════════════════════════════════════════════
@@ -236,7 +241,7 @@ function QuoteModal({ onClose }) {
                   <p className="text-[#C9A84C] text-[10px] tracking-[0.2em] uppercase font-semibold mb-0.5">{label}</p>
                   <p className="text-white text-sm font-medium truncate">{text}</p>
                 </div>
-                <span className="ml-auto text-[#C9A84C] opacity-0 group-hover:opacity-100 transition-opacity text-sm flex-shrink-0">→</span>
+
               </a>
             ))}
           </div>
@@ -297,7 +302,6 @@ function ValueCard({ v, i }) {
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
         className="relative rounded-3xl overflow-hidden border border-white/5 bg-[#0e0c08] p-8 cursor-pointer h-full"
       >
-        {/* animated glow behind card on hover */}
         <motion.div
           className="absolute inset-0 rounded-3xl pointer-events-none"
           animate={hovered
@@ -306,8 +310,6 @@ function ValueCard({ v, i }) {
           }
           transition={{ duration: 0.4 }}
         />
-
-        {/* shimmer sweep on hover */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
           initial={{ x: "-100%", opacity: 0 }}
@@ -317,8 +319,6 @@ function ValueCard({ v, i }) {
             background: `linear-gradient(105deg, transparent 40%, ${v.glow.replace("0.35", "0.18")} 50%, transparent 60%)`,
           }}
         />
-
-        {/* top gradient line */}
         <motion.div
           className="absolute top-0 left-0 right-0 h-px"
           animate={hovered
@@ -327,8 +327,6 @@ function ValueCard({ v, i }) {
           }
           transition={{ duration: 0.4 }}
         />
-
-        {/* big background number */}
         <div
           className="absolute -right-2 -top-3 text-[7rem] font-bold leading-none select-none pointer-events-none transition-all duration-500"
           style={{
@@ -338,8 +336,6 @@ function ValueCard({ v, i }) {
         >
           {v.number}
         </div>
-
-        {/* icon with pulse ring */}
         <div className="relative w-16 h-16 mb-7 flex-shrink-0">
           <motion.div
             className="absolute inset-0 rounded-2xl"
@@ -359,29 +355,19 @@ function ValueCard({ v, i }) {
             {v.icon}
           </motion.div>
         </div>
-
-        {/* title */}
         <motion.h3
           className="text-2xl font-bold mb-1 transition-colors duration-300"
-          style={{
-            fontFamily: "'Playfair Display', serif",
-            color: hovered ? v.accent : "#fff",
-          }}
+          style={{ fontFamily: "'Playfair Display', serif", color: hovered ? v.accent : "#fff" }}
         >
           {v.title}
         </motion.h3>
-
-        {/* animated underline */}
         <motion.div
           className="h-px mb-5 rounded-full"
           animate={{ width: hovered ? 64 : 28 }}
           transition={{ duration: 0.4 }}
           style={{ background: v.accent }}
         />
-
-        {/* desc */}
         <p className="text-gray-400 text-sm leading-[1.9] relative z-10">{v.desc}</p>
-
       </motion.div>
     </motion.div>
   );
@@ -397,8 +383,7 @@ function ServiceCard({ service, index, isExpanded, onToggle }) {
       <motion.div
         whileHover={!isExpanded ? { y: -8 } : {}}
         transition={{ type: "spring", stiffness: 260 }}
-        className={`group glass rounded-2xl overflow-hidden border transition-colors duration-300 flex flex-col h-full ${isExpanded ? "border-[#C9A84C]/50" : "border-white/5 hover:border-[#C9A84C]/35"
-          }`}
+        className={`group glass rounded-2xl overflow-hidden border transition-colors duration-300 flex flex-col h-full ${isExpanded ? "border-[#C9A84C]/50" : "border-white/5 hover:border-[#C9A84C]/35"}`}
       >
         <div className="relative h-48 overflow-hidden flex-shrink-0">
           <img
@@ -421,7 +406,6 @@ function ServiceCard({ service, index, isExpanded, onToggle }) {
             {service.title}
           </h3>
           <div className="h-px w-10 bg-[#C9A84C]/50 mb-5 group-hover:w-20 transition-all duration-500" />
-
           <ul className="space-y-3 flex-1">
             {service.items.map((item, j) => (
               <motion.li
@@ -437,7 +421,6 @@ function ServiceCard({ service, index, isExpanded, onToggle }) {
               </motion.li>
             ))}
           </ul>
-
           <div className="mt-auto pt-6 border-t border-white/5">
             <button
               onClick={onToggle}
@@ -505,67 +488,130 @@ function ExpandedPanel({ service }) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PROCESS STEP CARD
+   INDUSTRIES WE SERVE — replaces Process section
 ═══════════════════════════════════════════════════════ */
 
-function ProcessStep({ p, i }) {
+function IndustryRow({ industry, i }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.65, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, x: -24 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="text-center relative group"
+      className="group relative flex items-center gap-5 py-4 px-5 rounded-2xl border border-white/[0.05] cursor-default transition-all duration-300 hover:border-[#C9A84C]/30 hover:bg-[#C9A84C]/[0.03]"
     >
-      {/* connector line */}
-      {i < PROCESS.length - 1 && (
-        <div className="hidden md:block absolute top-8 left-[calc(50%+32px)] right-[calc(-50%+32px)] h-px bg-gradient-to-r from-[#C9A84C]/30 to-transparent" />
-      )}
+      {/* animated left gold bar */}
+      <motion.span
+        className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-[#C9A84C]"
+        animate={{ scaleY: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
+        style={{ originY: 0.5 }}
+        transition={{ duration: 0.25 }}
+      />
 
-      {/* circle with animated ring */}
-      <div className="relative w-16 h-16 mx-auto mb-5">
-        <motion.div
-          className="absolute inset-0 rounded-full border border-[#C9A84C]/40"
-          animate={hovered ? { scale: 1.4, opacity: 0 } : { scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, repeat: hovered ? Infinity : 0 }}
-        />
-        <motion.div
-          className="relative z-10 w-full h-full rounded-full border border-[#C9A84C]/40 bg-[#C9A84C]/10 flex items-center justify-center"
-          animate={hovered ? { backgroundColor: "rgba(201,168,76,0.2)", borderColor: "rgba(201,168,76,0.8)" } : {}}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.span
-            className="text-[#C9A84C] text-xl font-bold"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-            animate={hovered ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
-            transition={{ duration: 0.2 }}
-          >
-            {p.step}
-          </motion.span>
-          <motion.span
-            className="absolute text-2xl"
-            animate={hovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {p.icon}
-          </motion.span>
-        </motion.div>
-      </div>
-
-      <motion.h3
-        className="text-white font-bold mb-2 text-lg transition-colors duration-300"
-        animate={hovered ? { color: "#C9A84C" } : { color: "#fff" }}
+      {/* number */}
+      <span
+        className="text-[11px] font-bold tracking-[0.2em] text-[#C9A84C]/40 group-hover:text-[#C9A84C]/70 transition-colors duration-300 flex-shrink-0 w-6 text-right select-none"
+        style={{ fontFamily: "'Playfair Display', serif" }}
       >
-        {p.title}
-      </motion.h3>
-      <p className="text-gray-400 text-sm leading-[1.8]">{p.desc}</p>
+        {industry.number}
+      </span>
+
+      {/* divider dot */}
+      <span className="w-1 h-1 rounded-full bg-[#C9A84C]/20 flex-shrink-0 group-hover:bg-[#C9A84C]/50 transition-colors duration-300" />
+
+      {/* icon */}
+      <span className="text-xl flex-shrink-0">{industry.icon}</span>
+
+      {/* label */}
+      <motion.span
+        animate={{ color: hovered ? "#C9A84C" : "#e5e7eb" }}
+        transition={{ duration: 0.2 }}
+        className="text-sm font-medium tracking-wide"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+      >
+        {industry.label}
+      </motion.span>
+
+
     </motion.div>
+  );
+}
+
+function IndustriesSection() {
+  const half = Math.ceil(INDUSTRIES.length / 2);
+  const left = INDUSTRIES.slice(0, half);
+  const right = INDUSTRIES.slice(half);
+
+  return (
+    <section className="border-t border-[#C9A84C]/10 py-24 relative overflow-hidden">
+      {/* ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[260px] bg-[#C9A84C]/[0.04] blur-[90px] rounded-full pointer-events-none" />
+      {/* grid texture */}
+      <div
+        className="absolute inset-0 opacity-[0.018] pointer-events-none"
+        style={{
+          backgroundImage: "repeating-linear-gradient(45deg,#C9A84C 0,#C9A84C 1px,transparent 0,transparent 50%)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
+
+        {/* header */}
+        <FadeIn className="text-center mb-14">
+          <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">
+            Who We Work With
+          </span>
+          <h2
+            className="text-4xl md:text-5xl font-bold text-white mt-3 leading-tight"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Industries We{" "}
+            <span className="text-[#C9A84C] italic">Serve</span>
+          </h2>
+          <div className="h-px w-16 bg-[#C9A84C] mx-auto mt-5 mb-5" />
+          <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
+            From intimate luxury gatherings to massive open-air festivals — the same
+            gold-standard execution across every sector we partner with.
+          </p>
+        </FadeIn>
+
+        {/* two-column list */}
+        <div className="grid md:grid-cols-2 gap-3 md:gap-x-10">
+          <div className="space-y-3">
+            {left.map((ind, i) => <IndustryRow key={ind.label} industry={ind} i={i} />)}
+          </div>
+          <div className="space-y-3">
+            {right.map((ind, i) => <IndustryRow key={ind.label} industry={ind} i={i + half} />)}
+          </div>
+        </div>
+
+        {/* bottom stat row */}
+        <FadeIn delay={0.3} className="mt-14">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 py-7 px-8 rounded-2xl border border-[#C9A84C]/15 bg-[#C9A84C]/[0.025]">
+            {[
+              { value: "8+", label: "Industry Verticals" },
+              { value: "500+", label: "Events Delivered" },
+              { value: "Pan India", label: "Reach & Network" },
+            ].map(({ value, label }) => (
+              <div key={label} className="text-center">
+                <p className="text-2xl font-bold text-[#C9A84C]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  {value}
+                </p>
+                <p className="text-gray-400 text-xs tracking-[0.15em] uppercase mt-1">{label}</p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+
+      </div>
+    </section>
   );
 }
 
@@ -585,15 +631,10 @@ export default function Home() {
       {/* ── 1. HERO ── */}
       <Hero />
 
-      {/* ══════════════════════════════════════════════════════════
-          ABOUT
-      ══════════════════════════════════════════════════════════ */}
-
       {/* ── 2. ABOUT ROW 1 — Text + Image ── */}
       <section id="about" className="max-w-7xl mx-auto px-4 md:px-8 py-28 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-          {/* Left Content */}
           <FadeIn x={-70} delay={0.15}>
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -607,7 +648,6 @@ export default function Home() {
               >
                 Elevating Events Into Extraordinary Experiences
               </h2>
-
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: 56 }}
@@ -615,7 +655,6 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="h-px bg-[#C9A84C] mb-7"
               />
-
               <motion.p
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -629,7 +668,6 @@ export default function Home() {
                 events, luxury weddings, cultural festivals, and large-scale
                 entertainment experiences.
               </motion.p>
-
               <motion.p
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -641,45 +679,16 @@ export default function Home() {
                 industry, we bring together creativity, precision, and
                 world-class execution under one roof.
               </motion.p>
-
-              {/* Premium Royal Golden Tags */}
               <div className="flex flex-wrap gap-3 mt-10">
-                {[
-                  "Stage Setup",
-                  "Sound Systems",
-                  "LED Walls",
-                  "Trussing",
-                  "Lighting",
-                  "Generators",
-                  "Artist Management",
-                ].map((s, i) => (
+                {["Stage Setup", "Sound Systems", "LED Walls", "Trussing", "Lighting", "Generators", "Artist Management"].map((s, i) => (
                   <motion.span
                     key={s}
                     initial={{ opacity: 0, scale: 0.82, y: 20 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{
-                      duration: 0.45,
-                      delay: 0.7 + i * 0.08,
-                    }}
-                    whileHover={{
-                      scale: 1.06,
-                      y: -2,
-                    }}
-                    className="
-                text-[11px]
-                text-[#D4AF37]
-                border border-[#D4AF37]/30
-                rounded-full
-                px-3.5 py-1.5
-                backdrop-blur-sm
-                bg-[#D4AF37]/10
-                hover:bg-[#D4AF37]/20
-                hover:border-[#D4AF37]/60
-                hover:text-[#F5D97A]
-                transition-all duration-300
-                shadow-[0_0_12px_rgba(212,175,55,0.15)]
-              "
+                    transition={{ duration: 0.45, delay: 0.7 + i * 0.08 }}
+                    whileHover={{ scale: 1.06, y: -2 }}
+                    className="text-[11px] text-[#D4AF37] border border-[#D4AF37]/30 rounded-full px-3.5 py-1.5 backdrop-blur-sm bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 hover:border-[#D4AF37]/60 hover:text-[#F5D97A] transition-all duration-300 shadow-[0_0_12px_rgba(212,175,55,0.15)]"
                   >
                     {s}
                   </motion.span>
@@ -688,7 +697,6 @@ export default function Home() {
             </motion.div>
           </FadeIn>
 
-          {/* Right Image */}
           <FadeIn x={70} delay={0.2}>
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
@@ -697,10 +705,8 @@ export default function Home() {
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="relative"
             >
-
               <div className="absolute -inset-3 border border-[#C9A84C]/15 rounded-3xl" />
               <div className="absolute -inset-6 border border-[#C9A84C]/10 rounded-3xl" />
-
               <motion.img
                 src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1779439558/concert_h7fgla.avif"
                 alt="Event production"
@@ -708,8 +714,6 @@ export default function Home() {
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.5 }}
               />
-
-              {/* Experience Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -717,56 +721,30 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.8 }}
                 className="absolute bottom-5 right-5 z-20 bg-black/80 backdrop-blur-md border border-[#C9A84C]/30 rounded-xl px-5 py-3.5"
               >
-                <p
-                  className="text-[#C9A84C] font-bold text-lg"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  15+ Years
-                </p>
-
-                <p className="text-gray-300 text-xs mt-0.5 tracking-wide">
-                  of excellence
-                </p>
+                <p className="text-[#C9A84C] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>15+ Years</p>
+                <p className="text-gray-300 text-xs mt-0.5 tracking-wide">of excellence</p>
               </motion.div>
-
             </motion.div>
           </FadeIn>
 
         </div>
       </section>
 
-      {/* ── 3. VALUES STRIP — with full card animations ── */}
+      {/* ── 3. VALUES STRIP ── */}
       <section className="border-y border-[#C9A84C]/10 bg-[#C9A84C]/[0.02] py-24 relative overflow-hidden">
-        {/* subtle grid background */}
-        <div
-          className="absolute inset-0 opacity-[0.022] pointer-events-none"
-          style={{
-            backgroundImage: "repeating-linear-gradient(45deg, #C9A84C 0, #C9A84C 1px, transparent 0, transparent 50%)",
-            backgroundSize: "20px 20px",
-          }}
-        />
-        {/* floating ambient orbs */}
+        <div className="absolute inset-0 opacity-[0.022] pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(45deg,#C9A84C 0,#C9A84C 1px,transparent 0,transparent 50%)", backgroundSize: "20px 20px" }} />
         <div className="absolute top-10 left-1/4 w-72 h-72 rounded-full bg-[#C9A84C]/5 blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-1/4 w-56 h-56 rounded-full bg-[#C9A84C]/5 blur-3xl pointer-events-none" />
-
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative">
-          {/* section header */}
           <FadeIn className="text-center mb-14">
             <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">What Drives Us</span>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-white mt-3"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mt-3" style={{ fontFamily: "'Playfair Display', serif" }}>
               Our Core <span className="text-[#C9A84C] italic">Values</span>
             </h2>
             <div className="h-px w-16 bg-[#C9A84C] mx-auto mt-5" />
           </FadeIn>
-
-          {/* value cards grid */}
           <div className="grid md:grid-cols-3 gap-6">
-            {VALUES.map((v, i) => (
-              <ValueCard key={v.title} v={v} i={i} />
-            ))}
+            {VALUES.map((v, i) => <ValueCard key={v.title} v={v} i={i} />)}
           </div>
         </div>
       </section>
@@ -790,23 +768,14 @@ export default function Home() {
               </div>
             </div>
           </FadeIn>
-
           <FadeIn x={50}>
             <span className="text-[#C9A84C] text-[11px] tracking-[0.28em] uppercase font-semibold">What We Do</span>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
               Complete Event Production Solutions
             </h2>
             <div className="h-px w-14 bg-[#C9A84C] mb-7" />
             <ul className="mt-9 space-y-3.5">
-              {[
-                "Stage & Trussing Systems",
-                "Line-array Sound Systems",
-                "LED Walls & Lighting Design",
-                "Artist & Performer Booking",
-              ].map((item, i) => (
+              {["Stage & Trussing Systems", "Line-array Sound Systems", "LED Walls & Lighting Design", "Artist & Performer Booking"].map((item, i) => (
                 <motion.li
                   key={item}
                   initial={{ opacity: 0, x: -14 }}
@@ -835,26 +804,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════
-          SERVICES
-      ══════════════════════════════════════════════════════════ */}
-
       {/* ── 6. SERVICES HEADER ── */}
       <section id="services" className="relative py-24 text-center overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "repeating-linear-gradient(45deg, #C9A84C 0, #C9A84C 1px, transparent 0, transparent 50%)",
-            backgroundSize: "20px 20px",
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "repeating-linear-gradient(45deg,#C9A84C 0,#C9A84C 1px,transparent 0,transparent 50%)", backgroundSize: "20px 20px" }} />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
         <FadeIn>
           <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">What We Do Best</span>
-          <h2
-            className="text-5xl md:text-6xl font-bold text-white mt-4 leading-tight"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+          <h2 className="text-5xl md:text-6xl font-bold text-white mt-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             Our <span className="text-[#C9A84C] italic">Services</span>
           </h2>
           <div className="h-px w-20 bg-[#C9A84C] mx-auto mt-6" />
@@ -883,27 +839,8 @@ export default function Home() {
         <ExpandedPanel service={activeIndex !== null ? SERVICES[activeIndex] : null} />
       </section>
 
-      {/* ── 8. PROCESS ── */}
-      <section className="border-t border-[#C9A84C]/10 py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <FadeIn className="text-center mb-16">
-            <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">How It Works</span>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-white mt-3"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Our Process
-            </h2>
-            <div className="h-px w-14 bg-[#C9A84C] mx-auto mt-6" />
-          </FadeIn>
-
-          <div className="grid md:grid-cols-4 gap-6 relative">
-            {PROCESS.map((p, i) => (
-              <ProcessStep key={p.step} p={p} i={i} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── 8. INDUSTRIES WE SERVE (replaces Process) ── */}
+      <IndustriesSection />
 
       {/* ── 9. CTA BANNER ── */}
       <section id="contact-cta" className="max-w-7xl mx-auto px-4 md:px-8 pb-28">
@@ -912,18 +849,13 @@ export default function Home() {
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-[#C9A84C]/8 blur-3xl rounded-full pointer-events-none" />
-
             <span className="text-[#C9A84C] text-[11px] tracking-[0.28em] uppercase font-semibold">Ready to Begin?</span>
-            <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 mb-5"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>
               Ready to Plan Your Event?
             </h2>
             <p className="text-gray-400 mb-10 max-w-lg mx-auto leading-relaxed">
               Let's talk about your vision. We'll handle everything from planning to execution — get in touch for a free quote.
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 onClick={() => setShowModal(true)}
@@ -931,15 +863,9 @@ export default function Home() {
                 whileTap={{ scale: 0.97 }}
                 className="relative overflow-hidden bg-[#C9A84C] text-black px-10 py-4 rounded-full font-bold text-sm tracking-wide"
               >
-                <motion.span
-                  className="absolute inset-0 bg-white/20"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.4 }}
-                />
+                <motion.span className="absolute inset-0 bg-white/20" initial={{ x: "-100%" }} whileHover={{ x: "100%" }} transition={{ duration: 0.4 }} />
                 Get a Free Quote →
               </motion.button>
-
               <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.06)" }}
@@ -962,10 +888,7 @@ export default function Home() {
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A84C]/40" />
             <p className="text-[11px] tracking-[0.35em] uppercase text-gray-500 font-medium">
               Curated by{" "}
-              <span
-                className="text-[#C9A84C] font-semibold tracking-[0.3em]"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
+              <span className="text-[#C9A84C] font-semibold tracking-[0.3em]" style={{ fontFamily: "'Playfair Display', serif" }}>
                 RTH Events
               </span>
             </p>
