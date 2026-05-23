@@ -42,7 +42,7 @@ function FadeIn({ children, delay = 0, className = "" }) {
 
 export default function Contact() {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-20">
+    <section className="max-w-7xl mx-auto px-4 pt-36 pb-20">
 
       {/* ── Section Header ── */}
       <FadeIn className="text-center mb-16">
@@ -51,9 +51,9 @@ export default function Contact() {
         </span>
         <h2
           className="text-5xl md:text-6xl font-bold text-white mt-4 leading-tight"
-          style={{ fontFamily: "'Playfair Display', serif" }}
+          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
         >
-          Get In <span className="text-[#C9A84C] italic">Touch</span>
+          Get In <span className="text-[#C9A84C]">Touch</span>
         </h2>
         <div className="h-px w-20 bg-[#C9A84C] mx-auto mt-6" />
       </FadeIn>

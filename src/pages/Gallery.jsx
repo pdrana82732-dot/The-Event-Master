@@ -37,7 +37,7 @@ const images = [
 
 export default function Gallery() {
   return (
-    <section className="relative max-w-7xl mx-auto px-4 py-24 overflow-hidden">
+    <section className="relative max-w-7xl mx-auto px-4 pt-36 pb-24 overflow-hidden">
 
       {/* Background Glow */}
       <div className="absolute top-20 left-0 w-72 h-72 bg-[#C9A84C]/10 blur-3xl rounded-full" />
@@ -114,7 +114,7 @@ export default function Gallery() {
                 transition={{ delay: 0.2 }}
                 viewport={{ once: true }}
                 className="text-2xl font-bold text-white leading-snug"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
               >
                 {item.title}
               </motion.h3>
@@ -175,14 +175,15 @@ export default function Gallery() {
         className="text-center mt-24 relative z-10"
       >
         <span className="text-[#C9A84C] uppercase tracking-[0.3em] text-xs font-semibold">
-          Let’s Build Your Next Event
+          Let's Build Your Next Event
         </span>
 
         <h2
           className="text-4xl md:text-5xl font-bold text-white mt-5 leading-tight"
-          style={{ fontFamily: "'Playfair Display', serif" }}
+          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
         >
-          Creating <span className="text-[#C9A84C] italic">Unforgettable</span>{" "}
+          Creating{" "}
+          <span className="text-[#C9A84C]">Unforgettable</span>{" "}
           Experiences
         </h2>
 

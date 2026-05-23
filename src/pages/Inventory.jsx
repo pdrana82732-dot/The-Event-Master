@@ -35,8 +35,8 @@ export default function Inventory() {
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
         <FadeIn>
           <span className="text-[#C9A84C] text-xs tracking-[0.3em] uppercase font-semibold">Equipment Rental</span>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mt-4" style={{ fontFamily: PF }}>
-            Our <span className="text-[#C9A84C] italic">Inventory</span>
+          <h1 className="text-5xl md:text-6xl font-bold text-white mt-4" style={{ fontFamily: PF, fontStyle: "normal" }}>
+            Our <span className="text-[#C9A84C]">Inventory</span>
           </h1>
           <div className="h-px w-20 bg-[#C9A84C] mx-auto mt-6" />
           <p className="text-gray-400 mt-5 max-w-lg mx-auto leading-relaxed">
@@ -83,7 +83,7 @@ export default function Inventory() {
                     </div>
 
                     <div className="p-6 flex flex-col flex-1">
-                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#C9A84C] transition-colors duration-300" style={{ fontFamily: PF }}>
+                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#C9A84C] transition-colors duration-300" style={{ fontFamily: PF, fontStyle: "normal" }}>
                         {item.name}
                       </h3>
                       <div className="h-px w-8 bg-[#C9A84C]/50 mb-4 group-hover:w-16 transition-all duration-500" />
@@ -131,7 +131,7 @@ export default function Inventory() {
 
                 <h2
                   className="text-3xl md:text-4xl font-bold text-white mt-3"
-                  style={{ fontFamily: PF }}
+                  style={{ fontFamily: PF, fontStyle: "normal" }}
                 >
                   Download Our Equipment PDF
                 </h2>

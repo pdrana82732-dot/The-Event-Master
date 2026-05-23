@@ -555,7 +555,7 @@ function IndustriesSection() {
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Industries We{" "}
-            <span className="text-[#C9A84C] italic">Serve</span>
+            <span className="text-[#C9A84C]">Serve</span>
           </h2>
           <div className="h-px w-16 bg-[#C9A84C] mx-auto mt-5 mb-5" />
           <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
@@ -716,7 +716,7 @@ export default function Home() {
           <FadeIn className="text-center mb-14">
             <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">What Drives Us</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mt-3" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Our Core <span className="text-[#C9A84C] italic">Values</span>
+              Our Core <span className="text-[#C9A84C]">Values</span>
             </h2>
             <div className="h-px w-16 bg-[#C9A84C] mx-auto mt-5" />
           </FadeIn>
@@ -788,7 +788,7 @@ export default function Home() {
         <FadeIn>
           <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">What We Do Best</span>
           <h2 className="text-5xl md:text-6xl font-bold text-white mt-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Our <span className="text-[#C9A84C] italic">Services</span>
+            Our <span className="text-[#C9A84C]">Services</span>
           </h2>
           <div className="h-px w-20 bg-[#C9A84C] mx-auto mt-6" />
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto leading-relaxed">
