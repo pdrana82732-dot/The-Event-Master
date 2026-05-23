@@ -122,7 +122,6 @@ const SERVICES = [
   },
 ];
 
-/* Industries from the requirement image */
 const INDUSTRIES = [
   { icon: "🏢", label: "Corporate Companies", number: "01" },
   { icon: "🏛️", label: "Government Organizations", number: "02" },
@@ -241,7 +240,6 @@ function QuoteModal({ onClose }) {
                   <p className="text-[#C9A84C] text-[10px] tracking-[0.2em] uppercase font-semibold mb-0.5">{label}</p>
                   <p className="text-white text-sm font-medium truncate">{text}</p>
                 </div>
-
               </a>
             ))}
           </div>
@@ -488,7 +486,7 @@ function ExpandedPanel({ service }) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   INDUSTRIES WE SERVE — replaces Process section
+   INDUSTRIES WE SERVE
 ═══════════════════════════════════════════════════════ */
 
 function IndustryRow({ industry, i }) {
@@ -506,29 +504,20 @@ function IndustryRow({ industry, i }) {
       onMouseLeave={() => setHovered(false)}
       className="group relative flex items-center gap-5 py-4 px-5 rounded-2xl border border-white/[0.05] cursor-default transition-all duration-300 hover:border-[#C9A84C]/30 hover:bg-[#C9A84C]/[0.03]"
     >
-      {/* animated left gold bar */}
       <motion.span
         className="absolute left-0 top-3 bottom-3 w-[3px] rounded-full bg-[#C9A84C]"
         animate={{ scaleY: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
         style={{ originY: 0.5 }}
         transition={{ duration: 0.25 }}
       />
-
-      {/* number */}
       <span
         className="text-[11px] font-bold tracking-[0.2em] text-[#C9A84C]/40 group-hover:text-[#C9A84C]/70 transition-colors duration-300 flex-shrink-0 w-6 text-right select-none"
         style={{ fontFamily: "'Playfair Display', serif" }}
       >
         {industry.number}
       </span>
-
-      {/* divider dot */}
       <span className="w-1 h-1 rounded-full bg-[#C9A84C]/20 flex-shrink-0 group-hover:bg-[#C9A84C]/50 transition-colors duration-300" />
-
-      {/* icon */}
       <span className="text-xl flex-shrink-0">{industry.icon}</span>
-
-      {/* label */}
       <motion.span
         animate={{ color: hovered ? "#C9A84C" : "#e5e7eb" }}
         transition={{ duration: 0.2 }}
@@ -537,8 +526,6 @@ function IndustryRow({ industry, i }) {
       >
         {industry.label}
       </motion.span>
-
-
     </motion.div>
   );
 }
@@ -550,9 +537,7 @@ function IndustriesSection() {
 
   return (
     <section className="border-t border-[#C9A84C]/10 py-24 relative overflow-hidden">
-      {/* ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[260px] bg-[#C9A84C]/[0.04] blur-[90px] rounded-full pointer-events-none" />
-      {/* grid texture */}
       <div
         className="absolute inset-0 opacity-[0.018] pointer-events-none"
         style={{
@@ -560,10 +545,7 @@ function IndustriesSection() {
           backgroundSize: "20px 20px",
         }}
       />
-
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
-
-        {/* header */}
         <FadeIn className="text-center mb-14">
           <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">
             Who We Work With
@@ -581,8 +563,6 @@ function IndustriesSection() {
             gold-standard execution across every sector we partner with.
           </p>
         </FadeIn>
-
-        {/* two-column list */}
         <div className="grid md:grid-cols-2 gap-3 md:gap-x-10">
           <div className="space-y-3">
             {left.map((ind, i) => <IndustryRow key={ind.label} industry={ind} i={i} />)}
@@ -591,8 +571,6 @@ function IndustriesSection() {
             {right.map((ind, i) => <IndustryRow key={ind.label} industry={ind} i={i + half} />)}
           </div>
         </div>
-
-        {/* bottom stat row */}
         <FadeIn delay={0.3} className="mt-14">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 py-7 px-8 rounded-2xl border border-[#C9A84C]/15 bg-[#C9A84C]/[0.025]">
             {[
@@ -609,7 +587,6 @@ function IndustriesSection() {
             ))}
           </div>
         </FadeIn>
-
       </div>
     </section>
   );
@@ -825,21 +802,41 @@ export default function Home() {
 
       {/* ── 7. SERVICE CARDS + EXPANDED PANEL ── */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 pb-24">
-        <div className="grid md:grid-cols-3 gap-8" style={{ gridAutoRows: "1fr" }}>
+
+        {/* ── MOBILE: each card stacks with its own panel directly below ── */}
+        <div className="flex flex-col gap-6 md:hidden">
           {SERVICES.map((service, i) => (
-            <ServiceCard
-              key={service.title}
-              service={service}
-              index={i}
-              isExpanded={activeIndex === i}
-              onToggle={() => handleToggle(i)}
-            />
+            <div key={service.title}>
+              <ServiceCard
+                service={service}
+                index={i}
+                isExpanded={activeIndex === i}
+                onToggle={() => handleToggle(i)}
+              />
+              <ExpandedPanel service={activeIndex === i ? service : null} />
+            </div>
           ))}
         </div>
-        <ExpandedPanel service={activeIndex !== null ? SERVICES[activeIndex] : null} />
+
+        {/* ── DESKTOP: 3-column grid, shared panel below all cards ── */}
+        <div className="hidden md:block">
+          <div className="grid md:grid-cols-3 gap-8" style={{ gridAutoRows: "1fr" }}>
+            {SERVICES.map((service, i) => (
+              <ServiceCard
+                key={service.title}
+                service={service}
+                index={i}
+                isExpanded={activeIndex === i}
+                onToggle={() => handleToggle(i)}
+              />
+            ))}
+          </div>
+          <ExpandedPanel service={activeIndex !== null ? SERVICES[activeIndex] : null} />
+        </div>
+
       </section>
 
-      {/* ── 8. INDUSTRIES WE SERVE (replaces Process) ── */}
+      {/* ── 8. INDUSTRIES WE SERVE ── */}
       <IndustriesSection />
 
       {/* ── 9. CTA BANNER ── */}

@@ -26,11 +26,12 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── Navbar: always fixed so hamburger/X stays on screen while scrolling ── */}
       <motion.nav
         initial={{ y: -90, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`sticky top-3 z-50 mx-3 md:mx-6 rounded-2xl border transition-all duration-500 ${scrolled
+        className={`fixed top-3 left-3 right-3 md:left-6 md:right-6 z-50 rounded-2xl border transition-all duration-500 ${scrolled || menuOpen
             ? "bg-black/92 border-[#C9A84C]/35 shadow-[0_8px_40px_rgba(0,0,0,0.7)]"
             : "bg-black/65 border-white/10 shadow-xl"
           } backdrop-blur-xl`}
@@ -55,7 +56,6 @@ export default function Navbar() {
               />
             </div>
 
-            {/* Company name — "Events" is gold but NOT italic, same weight as "Master" */}
             <div className="flex flex-col leading-tight min-w-0">
               <span
                 className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 truncate tracking-tight"
@@ -112,7 +112,7 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          {/* ── Mobile: Hamburger only ── */}
+          {/* ── Mobile: Single hamburger / X button — stays fixed with navbar ── */}
           <div className="md:hidden flex items-center flex-shrink-0 z-20">
             <button
               onClick={() => setMenuOpen((v) => !v)}
@@ -120,15 +120,18 @@ export default function Navbar() {
               aria-label="Toggle menu"
             >
               <motion.span
-                animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.25 }}
                 className="w-4 h-px bg-white block origin-center"
               />
               <motion.span
                 animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.2 }}
                 className="w-4 h-px bg-white block"
               />
               <motion.span
-                animate={menuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.25 }}
                 className="w-4 h-px bg-white block origin-center"
               />
             </button>
@@ -137,11 +140,14 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* ── Mobile Menu ── */}
+      {/* Spacer so page content doesn't hide under fixed navbar */}
+      <div className="h-[68px] md:hidden" />
+
+      {/* ── Mobile Menu panel — sits just below the fixed navbar ── */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Full-screen backdrop — tapping outside closes the menu */}
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -151,24 +157,17 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
 
-            {/* Menu panel — fixed so it NEVER moves when the page scrolls */}
+            {/* Menu panel — fixed, no internal close button */}
             <motion.div
               initial={{ opacity: 0, y: -14, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -14, scale: 0.97 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="fixed top-[68px] left-3 right-3 z-[46] rounded-2xl bg-black/96 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl md:hidden"
+              className="fixed top-[72px] left-3 right-3 z-[46] rounded-2xl bg-black/96 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl md:hidden"
             >
               <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
 
-              {/* ✕ close button — always visible, top-right of panel */}
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-[#C9A84C]/40 transition-colors z-10 text-sm"
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
+              {/* No ✕ here — the navbar hamburger IS the close button */}
 
               <div className="flex flex-col py-3 px-2">
                 {NAV_LINKS.map((item, i) => {
