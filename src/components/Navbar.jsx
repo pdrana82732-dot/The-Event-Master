@@ -140,50 +140,74 @@ export default function Navbar() {
       {/* ── Mobile Menu ── */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -14, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -14, scale: 0.97 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed top-[76px] left-3 right-3 z-40 rounded-2xl bg-black/95 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl overflow-hidden md:hidden max-h-[calc(100vh-100px)] overflow-y-auto"
-          >
-            <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
-            <div className="flex flex-col py-3 px-2">
-              {NAV_LINKS.map((item, i) => {
-                const active = location.pathname === item.path;
-                return (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                  >
-                    <Link
-                      to={item.path}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${active
-                          ? "text-[#C9A84C] bg-[#C9A84C]/10"
-                          : "text-gray-300 hover:text-white hover:bg-white/5"
-                        }`}
+          <>
+            {/* Full-screen backdrop — tapping outside closes the menu */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[45] bg-black/50 md:hidden"
+              onClick={() => setMenuOpen(false)}
+            />
+
+            {/* Menu panel — fixed so it NEVER moves when the page scrolls */}
+            <motion.div
+              initial={{ opacity: 0, y: -14, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -14, scale: 0.97 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="fixed top-[68px] left-3 right-3 z-[46] rounded-2xl bg-black/96 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl md:hidden"
+            >
+              <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
+
+              {/* ✕ close button — always visible, top-right of panel */}
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-[#C9A84C]/40 transition-colors z-10 text-sm"
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+
+              <div className="flex flex-col py-3 px-2">
+                {NAV_LINKS.map((item, i) => {
+                  const active = location.pathname === item.path;
+                  return (
+                    <motion.div
+                      key={item.path}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
                     >
-                      {item.name}
-                      {active && <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-              <div className="px-4 pt-3 pb-2 border-t border-white/5 mt-2">
-                <button
-                  onClick={() => {
-                    setMenuOpen(false);
-                    setShowContactPopup(true);
-                  }}
-                  className="block w-full text-center bg-[#C9A84C] text-black px-5 py-3 rounded-full text-sm font-bold tracking-wide"
-                >
-                  Book Event →
-                </button>
+                      <Link
+                        to={item.path}
+                        onClick={() => setMenuOpen(false)}
+                        className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${active
+                            ? "text-[#C9A84C] bg-[#C9A84C]/10"
+                            : "text-gray-300 hover:text-white hover:bg-white/5"
+                          }`}
+                      >
+                        {item.name}
+                        {active && <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                <div className="px-4 pt-3 pb-3 border-t border-white/5 mt-2">
+                  <button
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setShowContactPopup(true);
+                    }}
+                    className="block w-full text-center bg-[#C9A84C] text-black px-5 py-3 rounded-full text-sm font-bold tracking-wide"
+                  >
+                    Book Event →
+                  </button>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
