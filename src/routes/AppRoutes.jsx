@@ -16,16 +16,19 @@ export default function AppRoutes() {
       <ScrollToTop />
 
       <Routes>
-        <Route path="/" element={<MainLayout />}>
 
+        {/* Main Layout */}
+        <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="inventory" element={<Inventory />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="contact" element={<Contact />} />
           <Route path="artist-booking" element={<ArtistBookingPage />} />
-          <Route path="*" element={<NotFound />} />
 
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Route>
+
       </Routes>
     </>
   );
