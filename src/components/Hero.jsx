@@ -1,16 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-// const SERVICES = [
-//   "Stage Setup",
-//   "Sound Systems",
-//   "LED Walls",
-//   "Trussing",
-//   "Lighting",
-//   "Generators",
-//   "Artist Management",
-// ];
-
 export default function Hero({ onBookClick }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -23,7 +13,7 @@ export default function Hero({ onBookClick }) {
   };
 
   return (
-    <section ref={ref} className="relative h-screen overflow-hidden flex items-center justify-center">
+    <section ref={ref} className="relative min-h-screen overflow-hidden flex items-center justify-center">
 
       {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
@@ -51,8 +41,8 @@ export default function Hero({ onBookClick }) {
         className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent origin-left z-10"
       />
 
-      {/* Content */}
-      <motion.div style={{ opacity }} className="relative z-10 text-center max-w-4xl px-6 w-full">
+      {/* Content — pt-20 pushes text below the fixed navbar */}
+      <motion.div style={{ opacity }} className="relative z-10 text-center max-w-4xl px-6 w-full pt-28 pb-10">
 
         {/* Eyebrow */}
         <motion.div
@@ -78,16 +68,16 @@ export default function Hero({ onBookClick }) {
           />
         </motion.div>
 
-        {/* Headline — reduced from 7rem → ~4.5rem max */}
+        {/* Headline — italic removed, fontStyle normal on all text */}
         <motion.h1
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="text-4xl md:text-5xl lg:text-[4.25rem] font-bold text-white leading-[1.08] tracking-tight mb-5"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "normal" }}
         >
           We Build
-          <span className="block text-[#C9A84C] italic"> Unforgettable</span>
+          <span className="block text-[#C9A84C]"> Unforgettable</span>
           Experiences
         </motion.h1>
 
@@ -98,27 +88,16 @@ export default function Hero({ onBookClick }) {
           transition={{ duration: 0.7, delay: 0.65 }}
           className="text-gray-300 text-sm md:text-base max-w-lg mx-auto mb-9 leading-relaxed"
         >
-          Delivering immersive event experiences with premium staging, cinematic lighting, powerful sound, LED visuals, and seamless event execution across India.        </motion.p>
+          Delivering immersive event experiences with premium staging, cinematic lighting, powerful sound, LED visuals, and seamless event execution across India.
+        </motion.p>
 
-        {/* Service Pills */}
+        {/* Service Pills placeholder */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.85 }}
           className="flex flex-wrap justify-center gap-2 mb-10"
-        >
-          {/* {SERVICES.map((s, i) => (
-            <motion.span
-              key={s}
-              initial={{ opacity: 0, scale: 0.82 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9 + i * 0.07 }}
-              className="text-[11px] text-gray-200 border border-white/15 rounded-full px-3.5 py-1.5 backdrop-blur-sm bg-white/5 hover:border-[#C9A84C]/50 hover:text-[#C9A84C] transition-colors duration-300"
-            >
-              {s}
-            </motion.span>
-          ))} */}
-        </motion.div>
+        />
 
         {/* CTA Buttons */}
         <motion.div
@@ -153,8 +132,8 @@ export default function Hero({ onBookClick }) {
             Get a Quote →
           </motion.button>
         </motion.div>
-      </motion.div>
 
+      </motion.div>
 
     </section>
   );

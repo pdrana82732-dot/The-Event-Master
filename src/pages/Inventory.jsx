@@ -29,7 +29,7 @@ export default function Inventory() {
     <div className="overflow-hidden">
 
       {/* Header */}
-      <section className="relative py-24 text-center">
+      <section className="relative pt-36 pb-24 text-center">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: "repeating-linear-gradient(45deg,#C9A84C 0,#C9A84C 1px,transparent 0,transparent 50%)", backgroundSize: "20px 20px" }} />
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
@@ -105,9 +105,7 @@ export default function Inventory() {
                   </motion.div>
                 </FadeIn>
               ))}
-
             </motion.div>
-
           )}
         </AnimatePresence>
       </section>
@@ -115,7 +113,6 @@ export default function Inventory() {
       {/* PDF Catalog Banner */}
       <FadeIn>
         <div className="max-w-6xl mx-auto px-4 mb-16">
-
           <div className="relative overflow-hidden rounded-3xl border border-[#C9A84C]/20 bg-gradient-to-r from-[#111] via-[#161616] to-[#111] p-8 md:p-10">
 
             {/* Glow */}
@@ -128,14 +125,12 @@ export default function Inventory() {
                 <span className="text-[#C9A84C] uppercase tracking-[0.25em] text-xs font-semibold">
                   Complete Inventory Catalog
                 </span>
-
                 <h2
                   className="text-3xl md:text-4xl font-bold text-white mt-3"
                   style={{ fontFamily: PF, fontStyle: "normal" }}
                 >
                   Download Our Equipment PDF
                 </h2>
-
                 <p className="text-gray-400 mt-4 leading-relaxed">
                   Explore our complete inventory catalog featuring professional
                   sound systems, lighting equipment, LED walls, stage setups,

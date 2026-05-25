@@ -174,10 +174,10 @@ function Counter({ target, suffix, label }) {
   return (
     <div ref={ref} className="text-center group">
       <div className="relative inline-block">
-        <span className="text-5xl font-bold text-black" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <span className="text-5xl font-bold text-black" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
           {count}
         </span>
-        <span className="text-3xl font-bold text-black" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <span className="text-3xl font-bold text-black" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
           {suffix}
         </span>
       </div>
@@ -211,7 +211,7 @@ function QuoteModal({ onClose }) {
           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
           <div className="px-8 pt-8 pb-6 text-center">
             <span className="text-[#C9A84C] text-[10px] tracking-[0.3em] uppercase font-semibold">Let's Connect</span>
-            <h3 className="text-3xl font-bold text-white mt-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h3 className="text-3xl font-bold text-white mt-2" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
               Get a Free Quote
             </h3>
             <div className="h-px w-16 bg-[#C9A84C] mx-auto mt-4" />
@@ -259,7 +259,7 @@ function QuoteModal({ onClose }) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   VALUE CARD — with 3D tilt + shimmer + glow animations
+   VALUE CARD
 ═══════════════════════════════════════════════════════ */
 
 function ValueCard({ v, i }) {
@@ -329,6 +329,7 @@ function ValueCard({ v, i }) {
           className="absolute -right-2 -top-3 text-[7rem] font-bold leading-none select-none pointer-events-none transition-all duration-500"
           style={{
             fontFamily: "'Playfair Display', serif",
+            fontStyle: "normal",
             color: hovered ? `${v.accent}18` : "rgba(255,255,255,0.025)",
           }}
         >
@@ -355,7 +356,7 @@ function ValueCard({ v, i }) {
         </div>
         <motion.h3
           className="text-2xl font-bold mb-1 transition-colors duration-300"
-          style={{ fontFamily: "'Playfair Display', serif", color: hovered ? v.accent : "#fff" }}
+          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal", color: hovered ? v.accent : "#fff" }}
         >
           {v.title}
         </motion.h3>
@@ -399,7 +400,7 @@ function ServiceCard({ service, index, isExpanded, onToggle }) {
         <div className="p-7 flex flex-col flex-1">
           <h3
             className="text-2xl font-bold text-white mb-1 group-hover:text-[#C9A84C] transition-colors duration-300"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
           >
             {service.title}
           </h3>
@@ -454,7 +455,7 @@ function ExpandedPanel({ service }) {
             <div className="flex flex-col md:flex-row gap-10">
               <div className="flex-1">
                 <span className="text-[#C9A84C] text-[10px] tracking-[0.3em] uppercase font-semibold">{service.tag}</span>
-                <h4 className="text-2xl font-bold text-white mt-2 mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <h4 className="text-2xl font-bold text-white mt-2 mb-3" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
                   {service.title}
                 </h4>
                 <div className="h-px w-10 bg-[#C9A84C] mb-5" />
@@ -512,7 +513,7 @@ function IndustryRow({ industry, i }) {
       />
       <span
         className="text-[11px] font-bold tracking-[0.2em] text-[#C9A84C]/40 group-hover:text-[#C9A84C]/70 transition-colors duration-300 flex-shrink-0 w-6 text-right select-none"
-        style={{ fontFamily: "'Playfair Display', serif" }}
+        style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
       >
         {industry.number}
       </span>
@@ -522,7 +523,7 @@ function IndustryRow({ industry, i }) {
         animate={{ color: hovered ? "#C9A84C" : "#e5e7eb" }}
         transition={{ duration: 0.2 }}
         className="text-sm font-medium tracking-wide"
-        style={{ fontFamily: "'Playfair Display', serif" }}
+        style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
       >
         {industry.label}
       </motion.span>
@@ -552,7 +553,7 @@ function IndustriesSection() {
           </span>
           <h2
             className="text-4xl md:text-5xl font-bold text-white mt-3 leading-tight"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
           >
             Industries We{" "}
             <span className="text-[#C9A84C]">Serve</span>
@@ -579,7 +580,7 @@ function IndustriesSection() {
               { value: "Pan India", label: "Reach & Network" },
             ].map(({ value, label }) => (
               <div key={label} className="text-center">
-                <p className="text-2xl font-bold text-[#C9A84C]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <p className="text-2xl font-bold text-[#C9A84C]" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
                   {value}
                 </p>
                 <p className="text-gray-400 text-xs tracking-[0.15em] uppercase mt-1">{label}</p>
@@ -609,6 +610,7 @@ export default function Home() {
       <Hero />
 
       {/* ── 2. ABOUT ROW 1 — Text + Image ── */}
+      {/* pt-36 adds extra space below the fixed navbar */}
       <section id="about" className="max-w-7xl mx-auto px-4 md:px-8 py-28 overflow-hidden">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -621,7 +623,7 @@ export default function Home() {
             >
               <h2
                 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}
               >
                 Elevating Events Into Extraordinary Experiences
               </h2>
@@ -698,7 +700,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.8 }}
                 className="absolute bottom-5 right-5 z-20 bg-black/80 backdrop-blur-md border border-[#C9A84C]/30 rounded-xl px-5 py-3.5"
               >
-                <p className="text-[#C9A84C] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>15+ Years</p>
+                <p className="text-[#C9A84C] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>15+ Years</p>
                 <p className="text-gray-300 text-xs mt-0.5 tracking-wide">of excellence</p>
               </motion.div>
             </motion.div>
@@ -715,7 +717,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 md:px-8 relative">
           <FadeIn className="text-center mb-14">
             <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">What Drives Us</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mt-3" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
               Our Core <span className="text-[#C9A84C]">Values</span>
             </h2>
             <div className="h-px w-16 bg-[#C9A84C] mx-auto mt-5" />
@@ -740,14 +742,14 @@ export default function Home() {
                 transition={{ duration: 0.45 }}
               />
               <div className="absolute top-5 left-5 z-20 bg-black/80 backdrop-blur-md border border-[#C9A84C]/30 rounded-xl px-5 py-3.5">
-                <p className="text-[#C9A84C] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif" }}>500+</p>
+                <p className="text-[#C9A84C] font-bold text-lg" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>500+</p>
                 <p className="text-gray-300 text-xs mt-0.5 tracking-wide">events delivered</p>
               </div>
             </div>
           </FadeIn>
           <FadeIn x={50}>
             <span className="text-[#C9A84C] text-[11px] tracking-[0.28em] uppercase font-semibold">What We Do</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
               Complete Event Production Solutions
             </h2>
             <div className="h-px w-14 bg-[#C9A84C] mb-7" />
@@ -787,7 +789,7 @@ export default function Home() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
         <FadeIn>
           <span className="text-[#C9A84C] text-[11px] tracking-[0.3em] uppercase font-semibold">What We Do Best</span>
-          <h2 className="text-5xl md:text-6xl font-bold text-white mt-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h2 className="text-5xl md:text-6xl font-bold text-white mt-4 leading-tight" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
             Our <span className="text-[#C9A84C]">Services</span>
           </h2>
           <div className="h-px w-20 bg-[#C9A84C] mx-auto mt-6" />
@@ -803,7 +805,7 @@ export default function Home() {
       {/* ── 7. SERVICE CARDS + EXPANDED PANEL ── */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 pb-24">
 
-        {/* ── MOBILE: each card stacks with its own panel directly below ── */}
+        {/* MOBILE: each card with its own panel directly below */}
         <div className="flex flex-col gap-6 md:hidden">
           {SERVICES.map((service, i) => (
             <div key={service.title}>
@@ -818,7 +820,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* ── DESKTOP: 3-column grid, shared panel below all cards ── */}
+        {/* DESKTOP: 3-column grid, shared panel below */}
         <div className="hidden md:block">
           <div className="grid md:grid-cols-3 gap-8" style={{ gridAutoRows: "1fr" }}>
             {SERVICES.map((service, i) => (
@@ -847,7 +849,7 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
             <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-[#C9A84C]/8 blur-3xl rounded-full pointer-events-none" />
             <span className="text-[#C9A84C] text-[11px] tracking-[0.28em] uppercase font-semibold">Ready to Begin?</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 mb-5" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
               Ready to Plan Your Event?
             </h2>
             <p className="text-gray-400 mb-10 max-w-lg mx-auto leading-relaxed">
@@ -885,7 +887,7 @@ export default function Home() {
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A84C]/40" />
             <p className="text-[11px] tracking-[0.35em] uppercase text-gray-500 font-medium">
               Curated by{" "}
-              <span className="text-[#C9A84C] font-semibold tracking-[0.3em]" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <span className="text-[#C9A84C] font-semibold tracking-[0.3em]" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "normal" }}>
                 RTH Events
               </span>
             </p>
