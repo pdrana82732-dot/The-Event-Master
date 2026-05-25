@@ -10,6 +10,19 @@ const NAV_LINKS = [
   { name: "Contact", path: "/contact" },
 ];
 
+// Preload Playfair Display globally so font is ready before navbar renders
+// This prevents the font-swap size jump on Artist Management page
+if (typeof document !== "undefined") {
+  const id = "playfair-preload";
+  if (!document.getElementById(id)) {
+    const link = document.createElement("link");
+    link.id = id;
+    link.rel = "stylesheet";
+    link.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap";
+    document.head.appendChild(link);
+  }
+}
+
 export default function Navbar() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
@@ -26,7 +39,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Navbar: always fixed so hamburger/X stays on screen while scrolling ── */}
       <motion.nav
         initial={{ y: -90, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -42,15 +54,18 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-2.5 relative">
 
           {/* ── Logo + Name ── */}
-          <Link
-            to="/"
-            className="flex items-center gap-3 md:gap-5 z-20 group min-w-0"
-          >
-            <div className="relative flex items-center justify-center h-10 w-10 md:h-14 md:w-16 lg:h-16 lg:w-20 flex-shrink-0">
+          <Link to="/" className="flex items-center gap-3 md:gap-4 z-20 group min-w-0">
+
+            {/*
+              FIX: Removed `absolute`, `max-w-none`, and the oversized `md:h-24 lg:h-28`.
+              The image now sits in normal flow, sized to match the container,
+              so it cannot grow the navbar on any page.
+            */}
+            <div className="flex items-center justify-center flex-shrink-0">
               <motion.img
                 src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1778664482/Events_Logo_qqulft.png"
                 alt="The Events Master Logo"
-                className="h-10 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl absolute max-w-none origin-center"
+                className="h-10 md:h-14 lg:h-16 w-auto object-contain drop-shadow-2xl"
                 whileHover={{ scale: 1.06 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               />
@@ -58,8 +73,12 @@ export default function Navbar() {
 
             <div className="flex flex-col leading-tight min-w-0">
               <span
-                className="text-sm sm:text-base md:text-xl lg:text-2xl font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 truncate tracking-tight"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="font-bold text-white group-hover:text-[#C9A84C] transition-colors duration-300 truncate tracking-tight"
+                style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(14px, 1.5vw, 24px)",
+                  lineHeight: 1.2,
+                }}
               >
                 The{" "}
                 <span className="text-[#C9A84C]">Events</span>{" "}
@@ -112,7 +131,7 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          {/* ── Mobile: Single hamburger / X button — stays fixed with navbar ── */}
+          {/* ── Mobile Hamburger ── */}
           <div className="md:hidden flex items-center flex-shrink-0 z-20">
             <button
               onClick={() => setMenuOpen((v) => !v)}
@@ -140,14 +159,13 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Spacer so page content doesn't hide under fixed navbar */}
+      {/* Spacer for fixed navbar on mobile */}
       <div className="h-[68px] md:hidden" />
 
-      {/* ── Mobile Menu panel — sits just below the fixed navbar ── */}
+      {/* ── Mobile Menu ── */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -157,7 +175,6 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
 
-            {/* Menu panel — fixed, no internal close button */}
             <motion.div
               initial={{ opacity: 0, y: -14, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -166,8 +183,6 @@ export default function Navbar() {
               className="fixed top-[72px] left-3 right-3 z-[46] rounded-2xl bg-black/96 backdrop-blur-xl border border-[#C9A84C]/20 shadow-2xl md:hidden"
             >
               <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/40 to-transparent" />
-
-              {/* No ✕ here — the navbar hamburger IS the close button */}
 
               <div className="flex flex-col py-3 px-2">
                 {NAV_LINKS.map((item, i) => {
